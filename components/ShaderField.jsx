@@ -18,9 +18,24 @@ export default function ShaderField({ className = "", intensity = 1 }) {
     const coarse = window.matchMedia("(pointer: coarse)").matches;
     if (reduce || coarse) return;
 
+    // Defensively create the WebGL context. If the browser has hardware
+    // acceleration disabled or the GPU is blocklisted, context creation throws
+    // — catch it and bail quietly so the section just shows its static
+    // background instead of crashing the whole page.
+    let renderer;
+    try {
+      const probe = document.createElement("canvas");
+      if (!(probe.getContext("webgl2") || probe.getContext("webgl"))) return;
+      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
+    } catch (err) {
+      if (process.env.NODE_ENV !== "production") {
+        console.warn("ShaderField: WebGL unavailable, skipping.", err);
+      }
+      return;
+    }
+
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     el.appendChild(renderer.domElement);
     Object.assign(renderer.domElement.style, {
