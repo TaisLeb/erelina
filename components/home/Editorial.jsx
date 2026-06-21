@@ -21,7 +21,18 @@ export default function Editorial() {
       <div className="container editorial__grid">
         <Link href="/product/orange-sunset" className="ed-card ed-card--serum" data-cursor="view" data-cursor-label="View">
           <div className="ed-card__media">
-            <img data-reveal="img" data-parallax="-6" src="/assets/serum-open.jpg" alt="Erelina brightening serum held in hand" />
+            <video
+              data-reveal="img"
+              data-parallax="-6"
+              src="/assets/serum-video.mp4"
+              poster="/assets/serum-open.jpg"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label="Erelina brightening serum being dispensed from a glass dropper"
+            />
           </div>
           <div className="ed-card__foot">
             <div>
