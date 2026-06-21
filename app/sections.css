@@ -216,15 +216,18 @@
   position: absolute;
   z-index: 4;
   right: clamp(-2rem, 2vw, 4rem);
-  bottom: -4%;
+  bottom: 0;
+  /* Image has ~8% transparent padding below the wrist; push it down by that
+     fraction of its own height so the visible hand sits flush with the block
+     bottom (section clips the overflow). */
+  transform: translateY(8%);
   width: clamp(190px, 26vw, 380px);
   filter: drop-shadow(0 30px 40px rgba(40, 30, 20, 0.28));
-  will-change: transform;
   pointer-events: none;
 }
 @media (max-width: 720px) {
   .ol__inner { padding-block: 7rem 12rem; }
-  .ol__product { right: 50%; transform: translateX(50%); width: 200px; bottom: 2%; }
+  .ol__product { right: 50%; transform: translate(50%, 8%); width: 200px; bottom: 0; }
 }
 
 /* ---------------- RITUAL ---------------- */

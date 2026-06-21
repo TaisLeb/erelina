@@ -14,12 +14,6 @@ export default function OrganicLuxury() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const ctx = gsap.context(() => {
       if (reduce) return;
-      gsap.to(".ol__product", {
-        yPercent: -16,
-        rotate: -4,
-        ease: "none",
-        scrollTrigger: { trigger: root.current, start: "top bottom", end: "bottom top", scrub: true },
-      });
       gsap.fromTo(
         ".ol__word",
         { opacity: 0.14, y: 18 },
