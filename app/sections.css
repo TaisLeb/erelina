@@ -17,7 +17,7 @@
   width: 100%;
   height: 120%;
   object-fit: cover;
-  object-position: 50% 28%;
+  object-position: 50% 44%;
   will-change: transform;
 }
 .hero__veil {
@@ -36,9 +36,9 @@
 }
 .hero__eyebrow { color: color-mix(in srgb, var(--paper) 82%, transparent); margin-bottom: 1.4rem; }
 .hero__title {
-  font-size: clamp(2.7rem, 8vw, 6.4rem);
+  font-size: clamp(2.3rem, 6.6vw, 5.4rem);
   font-weight: 300;
-  line-height: 0.98;
+  line-height: 1;
   letter-spacing: -0.02em;
   color: var(--paper);
   max-width: 12ch;
@@ -314,7 +314,7 @@
 
 /* ---------------- PRESS ---------------- */
 .press {
-  background: #ffffff;
+  background: var(--paper);
   padding: clamp(3.5rem, 7vw, 6rem) 0;
   border-top: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
   border-bottom: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
