@@ -14,6 +14,10 @@ export default function Cursor() {
   useEffect(() => {
     if (window.matchMedia("(pointer: coarse)").matches) return;
     const el = root.current;
+    if (!el) return;
+    // Only now hide the native cursor — if this effect never runs, the
+    // native pointer stays visible.
+    document.body.classList.add("has-cursor");
     const xTo = gsap.quickTo(el, "x", { duration: 0.12, ease: "power3" });
     const yTo = gsap.quickTo(el, "y", { duration: 0.12, ease: "power3" });
 
@@ -40,6 +44,7 @@ export default function Cursor() {
     return () => {
       window.removeEventListener("mousemove", move);
       document.removeEventListener("mouseover", over);
+      document.body.classList.remove("has-cursor");
     };
   }, []);
 

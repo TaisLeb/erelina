@@ -53,7 +53,20 @@ body {
   font-weight: 300;
   line-height: 1.6;
   overflow-x: hidden;
+}
+
+/* Hide the native cursor ONLY once the custom cursor has initialised
+   (JS adds .has-cursor). If the script never runs, the native cursor
+   stays — never leave the user with no pointer. */
+body.has-cursor,
+body.has-cursor a,
+body.has-cursor button,
+body.has-cursor [data-cursor] {
   cursor: none;
+}
+body.has-cursor input,
+body.has-cursor textarea {
+  cursor: text;
 }
 
 /* While preloading, lock scroll */
@@ -74,7 +87,6 @@ button {
   color: inherit;
   background: none;
   border: none;
-  cursor: none;
 }
 
 ::selection { background: var(--gold); color: var(--paper); }
@@ -123,7 +135,9 @@ h1, h2, h3 {
   left: 0;
   z-index: 9999;
   pointer-events: none;
-  mix-blend-mode: difference;
+  /* A soft light halo keeps the dark cursor visible on the dark hero too,
+     without mix-blend-mode (which vanished on the light cream sections). */
+  filter: drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.6));
   will-change: transform;
 }
 .cursor__dot,
@@ -134,11 +148,11 @@ h1, h2, h3 {
   border-radius: 50%;
   transform: translate(-50%, -50%);
 }
-.cursor__dot { width: 6px; height: 6px; background: #f4eee4; }
+.cursor__dot { width: 6px; height: 6px; background: var(--ink); }
 .cursor__ring {
   width: 38px;
   height: 38px;
-  border: 1px solid #f4eee4;
+  border: 1px solid var(--ink);
   transition: width 0.4s var(--ease), height 0.4s var(--ease),
     opacity 0.4s var(--ease);
 }
