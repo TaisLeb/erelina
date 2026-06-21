@@ -24,7 +24,6 @@ export default function Editorial() {
             <video
               data-reveal="img"
               data-parallax="-6"
-              src="/assets/serum-video.mp4"
               poster="/assets/serum-open.jpg"
               autoPlay
               muted
@@ -32,7 +31,10 @@ export default function Editorial() {
               playsInline
               preload="metadata"
               aria-label="Erelina brightening serum being dispensed from a glass dropper"
-            />
+            >
+              <source src="/assets/serum-video.webm" type="video/webm" />
+              <source src="/assets/serum-video.mp4" type="video/mp4" />
+            </video>
           </div>
           <div className="ed-card__foot">
             <div>
